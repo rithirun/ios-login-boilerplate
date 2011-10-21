@@ -1,0 +1,280 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C887874A1451FCF700C03EFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88787491451FCF700C03EFE /* UIKit.framework */; };
+		C887874C1451FCF700C03EFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C887874B1451FCF700C03EFE /* Foundation.framework */; };
+		C887874E1451FCF700C03EFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C887874D1451FCF700C03EFE /* CoreGraphics.framework */; };
+		C88787541451FCF700C03EFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C88787521451FCF700C03EFE /* InfoPlist.strings */; };
+		C88787561451FCF700C03EFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C88787551451FCF700C03EFE /* main.m */; };
+		C887875A1451FCF700C03EFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C88787591451FCF700C03EFE /* AppDelegate.m */; };
+		C887875D1451FCF700C03EFE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C887875C1451FCF700C03EFE /* ViewController.m */; };
+		C88787601451FCF700C03EFE /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C887875E1451FCF700C03EFE /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C88787451451FCF700C03EFE /* RailsLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RailsLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C88787491451FCF700C03EFE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C887874B1451FCF700C03EFE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C887874D1451FCF700C03EFE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C88787511451FCF700C03EFE /* RailsLogin-Info.plist */ = {isa = PBXFileReference; path = "RailsLogin-Info.plist"; sourceTree = "<group>"; };
+		C88787531451FCF700C03EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C88787551451FCF700C03EFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C88787571451FCF700C03EFE /* RailsLogin-Prefix.pch */ = {isa = PBXFileReference; path = "RailsLogin-Prefix.pch"; sourceTree = "<group>"; };
+		C88787581451FCF700C03EFE /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		C88787591451FCF700C03EFE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C887875B1451FCF700C03EFE /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		C887875C1451FCF700C03EFE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C887875F1451FCF700C03EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C88787421451FCF700C03EFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C887874A1451FCF700C03EFE /* UIKit.framework in Frameworks */,
+				C887874C1451FCF700C03EFE /* Foundation.framework in Frameworks */,
+				C887874E1451FCF700C03EFE /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C887873A1451FCF700C03EFE = {
+			isa = PBXGroup;
+			children = (
+				C887874F1451FCF700C03EFE /* RailsLogin */,
+				C88787481451FCF700C03EFE /* Frameworks */,
+				C88787461451FCF700C03EFE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C88787461451FCF700C03EFE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C88787451451FCF700C03EFE /* RailsLogin.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C88787481451FCF700C03EFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C88787491451FCF700C03EFE /* UIKit.framework */,
+				C887874B1451FCF700C03EFE /* Foundation.framework */,
+				C887874D1451FCF700C03EFE /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C887874F1451FCF700C03EFE /* RailsLogin */ = {
+			isa = PBXGroup;
+			children = (
+				C88787581451FCF700C03EFE /* AppDelegate.h */,
+				C88787591451FCF700C03EFE /* AppDelegate.m */,
+				C887875B1451FCF700C03EFE /* ViewController.h */,
+				C887875C1451FCF700C03EFE /* ViewController.m */,
+				C887875E1451FCF700C03EFE /* ViewController.xib */,
+				C88787501451FCF700C03EFE /* Supporting Files */,
+			);
+			path = RailsLogin;
+			sourceTree = "<group>";
+		};
+		C88787501451FCF700C03EFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C88787511451FCF700C03EFE /* RailsLogin-Info.plist */,
+				C88787521451FCF700C03EFE /* InfoPlist.strings */,
+				C88787551451FCF700C03EFE /* main.m */,
+				C88787571451FCF700C03EFE /* RailsLogin-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C88787441451FCF700C03EFE /* RailsLogin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C88787631451FCF700C03EFE /* Build configuration list for PBXNativeTarget "RailsLogin" */;
+			buildPhases = (
+				C88787411451FCF700C03EFE /* Sources */,
+				C88787421451FCF700C03EFE /* Frameworks */,
+				C88787431451FCF700C03EFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RailsLogin;
+			productName = RailsLogin;
+			productReference = C88787451451FCF700C03EFE /* RailsLogin.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C887873C1451FCF700C03EFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Millennium Dreamworks";
+			};
+			buildConfigurationList = C887873F1451FCF700C03EFE /* Build configuration list for PBXProject "RailsLogin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C887873A1451FCF700C03EFE;
+			productRefGroup = C88787461451FCF700C03EFE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C88787441451FCF700C03EFE /* RailsLogin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C88787431451FCF700C03EFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C88787541451FCF700C03EFE /* InfoPlist.strings in Resources */,
+				C88787601451FCF700C03EFE /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C88787411451FCF700C03EFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C88787561451FCF700C03EFE /* main.m in Sources */,
+				C887875A1451FCF700C03EFE /* AppDelegate.m in Sources */,
+				C887875D1451FCF700C03EFE /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C88787521451FCF700C03EFE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C88787531451FCF700C03EFE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C887875E1451FCF700C03EFE /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C887875F1451FCF700C03EFE /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C88787611451FCF700C03EFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C88787621451FCF700C03EFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C88787641451FCF700C03EFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RailsLogin/RailsLogin-Prefix.pch";
+				INFOPLIST_FILE = "RailsLogin/RailsLogin-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C88787651451FCF700C03EFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RailsLogin/RailsLogin-Prefix.pch";
+				INFOPLIST_FILE = "RailsLogin/RailsLogin-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C887873F1451FCF700C03EFE /* Build configuration list for PBXProject "RailsLogin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C88787611451FCF700C03EFE /* Debug */,
+				C88787621451FCF700C03EFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C88787631451FCF700C03EFE /* Build configuration list for PBXNativeTarget "RailsLogin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C88787641451FCF700C03EFE /* Debug */,
+				C88787651451FCF700C03EFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C887873C1451FCF700C03EFE /* Project object */;
+}
