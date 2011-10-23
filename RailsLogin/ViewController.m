@@ -7,8 +7,20 @@
 //
 
 #import "ViewController.h"
+#import "SpinnerView.h"
 
 @implementation ViewController
+
+@synthesize usernameField, passwordField, registerLabel, waitingView, user;
+
+- (void)loginFormSubmitted
+{
+    SpinnerView *spinner = [SpinnerView loadSpinnerIntoView:self.view];
+    self.user = [AppUser authenticateUser:self.usernameField.text 
+                              withPassword:self.passwordField.text];
+    [spinner removeFromSuperview];
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -16,7 +28,31 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+    if ([textField isEqual:self.usernameField]) {
+        [self.passwordField becomeFirstResponder];
+    } else {
+        [self loginFormSubmitted];
+    }
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 #pragma mark - View lifecycle
+
+- (void)releaseOutlets
+{
+    self.usernameField = nil;
+    self.passwordField = nil;
+    self.registerLabel = nil;
+    self.waitingView = nil;
+}
 
 - (void)viewDidLoad
 {
@@ -29,6 +65,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [self releaseOutlets];
 }
 
 - (void)viewWillAppear:(BOOL)animated
