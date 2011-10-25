@@ -8,19 +8,35 @@
 
 #import "ViewController.h"
 #import "RegistrationController.h"
-#import "SpinnerView.h"
+#import "RailsUtils.h"
 
 @implementation ViewController
 
 @synthesize usernameField, passwordField, registerButton, waitingView, user;
+@synthesize navigationController;
 
 - (void)loginFormSubmitted
 {
-    SpinnerView *spinner = [SpinnerView loadSpinnerIntoView:self.view];
-    self.user = [AppUser authenticateUser:self.usernameField.text 
-                              withPassword:self.passwordField.text];
-    [spinner removeFromSuperview];
+    self.waitingView = [SpinnerView loadSpinnerIntoView:self.view];
+    [AppUser authenticateUser:self.usernameField.text 
+                              withPassword:self.passwordField.text
+                            requestDelegate:self];
     
+}
+
+-(void)loginComplete:(AppUser *)aUser
+{
+    self.navigationController.user = aUser;
+    NSLog(@"user id is: %@", self.navigationController.user.userId);
+    [self.waitingView removeFromSuperview];
+}
+
+-(void)loginFailed:(NSArray *)errors
+{
+    [self.waitingView removeFromSuperview];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[RailsUtils stringFromErrorsArray:errors] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 
@@ -49,7 +65,7 @@
 #pragma mark - UIButonDelegate
 - (IBAction)registerButtonClicked:(id)sender
 {
-    RegistrationController *registrationController = [[RegistrationController alloc] initWithNibName:@"RegistrationController" bundle:[NSBundle mainBundle]];
+    RegistrationController *registrationController = [[RegistrationController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
     [self presentViewController:registrationController animated:YES completion:nil];
 }
 

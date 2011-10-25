@@ -7,18 +7,16 @@
 //
 
 #import "AppDelegate.h"
-
+#import "RootNavigationController.h"
 #import "ViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
 
 - (void)dealloc
 {
     [_window release];
-    [_viewController release];
     [super dealloc];
 }
 
@@ -26,8 +24,19 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
-    self.window.rootViewController = self.viewController;
+    
+    // initialize our navigation controller
+    RootNavigationController *navigationController = [[RootNavigationController alloc] init];
+    self.window.rootViewController = navigationController;
+    
+    // no title bar
+    navigationController.navigationBarHidden = YES;
+    
+    // add the login controller to the stack
+    ViewController *loginController = [[ViewController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
+    [navigationController pushViewController:loginController animated:NO];
+    [loginController release];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

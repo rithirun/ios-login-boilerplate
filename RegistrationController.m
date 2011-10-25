@@ -9,10 +9,13 @@
 #import "RegistrationController.h"
 #import "AppUser.h"
 #import "SpinnerView.h"
+#import "RailsUtils.h"
 
 @implementation RegistrationController
 
 @synthesize emailField, passwordField, passwordConfirmationField, firstnameField, lastnameField, cancelButton, registerButton;
+@synthesize waitingView;
+@synthesize navigationController;
 
 - (void)didReceiveMemoryWarning
 {
@@ -34,16 +37,28 @@
 
 - (void)registerUser
 {
-    SpinnerView *spinnerView = [SpinnerView loadSpinnerIntoView:self.view];
+    self.waitingView = [SpinnerView loadSpinnerIntoView:self.view];
     AppUser *user = [[AppUser alloc] init];
     user.email = emailField.text;
     user.password = passwordField.text;
     user.passwordConfirmation = passwordConfirmationField.text;
     user.firstname = firstnameField.text;
     user.lastname = lastnameField.text;
-    [user register];
-    [spinnerView removeFromSuperview];
+    [user register:self];
     [user release];
+}
+
+- (void)registrationComplete:(AppUser *)aUser
+{
+    [self.waitingView removeFromSuperview];
+}
+
+- (void)registrationFailed:(NSArray *)errors
+{
+    [self.waitingView removeFromSuperview];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[RailsUtils stringFromErrorsArray:errors] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 - (void)releaseOutlets
@@ -55,6 +70,7 @@
     self.lastnameField = nil;
     self.cancelButton = nil;
     self.registerButton = nil;
+    self.waitingView = nil;
 }
 
 #pragma mark - UITextFieldDelegate

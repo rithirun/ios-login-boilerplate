@@ -8,22 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "AppUser.h"
+#import "SpinnerView.h"
+#import "RootNavigationController.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate>
+@interface ViewController : UIViewController <UITextFieldDelegate,AppUserLoginDelegate,UIAlertViewDelegate>
 {
     AppUser *user;
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;
     IBOutlet UIButton *registerButton;
-    IBOutlet UIView *waitingView;
+    IBOutlet SpinnerView *waitingView;
 }
 
 - (void)loginFormSubmitted;
+- (void)loginComplete:(AppUser *)aUser;
+- (void)loginFailed:(NSArray *)errors;
 
-@property (nonatomic,retain) IBOutlet UITextField *usernameField;
-@property (nonatomic,retain) IBOutlet UITextField *passwordField;
-@property (nonatomic,retain) IBOutlet UIButton *registerButton;
-@property (nonatomic,retain) IBOutlet UIView *waitingView;
+@property (retain) IBOutlet UITextField *usernameField;
+@property (retain) IBOutlet UITextField *passwordField;
+@property (retain) IBOutlet UIButton *registerButton;
+@property (retain) IBOutlet SpinnerView *waitingView;
 @property (nonatomic,retain) AppUser *user;
+@property (retain) RootNavigationController *navigationController;
 
 @end

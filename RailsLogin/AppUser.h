@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 @interface AppUser : NSObject
 {
 @private
@@ -56,12 +58,25 @@
  @param password the password
  @returns the user authenticated
  */
-+ (AppUser *)authenticateUser:(NSString *)email 
-            withPassword:(NSString *)password;
++ (void)authenticateUser:(NSString *)email 
+            withPassword:(NSString *)password
+              requestDelegate:(id)delegate;
+
 
 /**
  Registers the user, returning a populated user model.
  */
-- (AppUser *)register;
+- (void)register:(id)delegate;
 
 @end
+
+@protocol AppUserLoginDelegate <NSObject>
+- (void) loginComplete:(AppUser *)user;
+- (void) loginFailed:(NSArray *)errors;
+@end
+
+@protocol AppUserRegistrationDelegate <NSObject>
+- (void) registrationComplete:(AppUser *)user;
+- (void) registrationFailed:(NSArray *)errors;
+@end
+

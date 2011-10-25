@@ -46,6 +46,9 @@
 		C88787F11451FF1A00C03EFE /* AppUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C88787F01451FF1A00C03EFE /* AppUser.m */; };
 		C88788031453023B00C03EFE /* RegistrationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88788011453023B00C03EFE /* RegistrationController.m */; };
 		C88788041453023B00C03EFE /* RegistrationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88788021453023B00C03EFE /* RegistrationController.xib */; };
+		C8D63CD514573623006967E6 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CD414573623006967E6 /* RootNavigationController.m */; };
+		C8D63CD814574602006967E6 /* Inflector.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CD714574602006967E6 /* Inflector.m */; };
+		C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CDA14574BEF006967E6 /* RailsUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +125,12 @@
 		C88788001453023B00C03EFE /* RegistrationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationController.h; path = ../RegistrationController.h; sourceTree = "<group>"; };
 		C88788011453023B00C03EFE /* RegistrationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationController.m; path = ../RegistrationController.m; sourceTree = "<group>"; };
 		C88788021453023B00C03EFE /* RegistrationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegistrationController.xib; path = ../RegistrationController.xib; sourceTree = "<group>"; };
+		C8D63CD314573623006967E6 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavigationController.h; sourceTree = "<group>"; };
+		C8D63CD414573623006967E6 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
+		C8D63CD614574602006967E6 /* Inflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflector.h; sourceTree = "<group>"; };
+		C8D63CD714574602006967E6 /* Inflector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflector.m; sourceTree = "<group>"; };
+		C8D63CD914574BEF006967E6 /* RailsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RailsUtils.h; sourceTree = "<group>"; };
+		C8D63CDA14574BEF006967E6 /* RailsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RailsUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +185,39 @@
 			name = SBJson;
 			sourceTree = "<group>";
 		};
+		C8683D1B14570F7A00D357BC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C887875B1451FCF700C03EFE /* ViewController.h */,
+				C887875C1451FCF700C03EFE /* ViewController.m */,
+				C88788001453023B00C03EFE /* RegistrationController.h */,
+				C88788011453023B00C03EFE /* RegistrationController.m */,
+				C8D63CD314573623006967E6 /* RootNavigationController.h */,
+				C8D63CD414573623006967E6 /* RootNavigationController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C8683D1E14570F9D00D357BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C88787EF1451FF1A00C03EFE /* AppUser.h */,
+				C88787F01451FF1A00C03EFE /* AppUser.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C8683D1F1457104200D357BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C8664F2C14547B660039E32B /* SpinnerView.h */,
+				C8664F2D14547B660039E32B /* SpinnerView.m */,
+				C88788021453023B00C03EFE /* RegistrationController.xib */,
+				C887875E1451FCF700C03EFE /* ViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		C887873A1451FCF700C03EFE = {
 			isa = PBXGroup;
 			children = (
@@ -212,21 +254,12 @@
 		C887874F1451FCF700C03EFE /* RailsLogin */ = {
 			isa = PBXGroup;
 			children = (
-				C8664F0014546F560039E32B /* SBJson */,
-				C88787661451FD1300C03EFE /* ASIHTTPRequest */,
-				C88788001453023B00C03EFE /* RegistrationController.h */,
-				C88788011453023B00C03EFE /* RegistrationController.m */,
-				C88788021453023B00C03EFE /* RegistrationController.xib */,
+				C8683D1E14570F9D00D357BC /* Models */,
+				C8683D1F1457104200D357BC /* Views */,
+				C8683D1B14570F7A00D357BC /* Controllers */,
 				C88787581451FCF700C03EFE /* AppDelegate.h */,
 				C88787591451FCF700C03EFE /* AppDelegate.m */,
-				C887875B1451FCF700C03EFE /* ViewController.h */,
-				C887875C1451FCF700C03EFE /* ViewController.m */,
-				C887875E1451FCF700C03EFE /* ViewController.xib */,
-				C88787EF1451FF1A00C03EFE /* AppUser.h */,
-				C88787F01451FF1A00C03EFE /* AppUser.m */,
 				C88787501451FCF700C03EFE /* Supporting Files */,
-				C8664F2C14547B660039E32B /* SpinnerView.h */,
-				C8664F2D14547B660039E32B /* SpinnerView.m */,
 			);
 			path = RailsLogin;
 			sourceTree = "<group>";
@@ -234,10 +267,16 @@
 		C88787501451FCF700C03EFE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C8D63CD614574602006967E6 /* Inflector.h */,
+				C8D63CD714574602006967E6 /* Inflector.m */,
+				C8664F0014546F560039E32B /* SBJson */,
+				C88787661451FD1300C03EFE /* ASIHTTPRequest */,
 				C88787511451FCF700C03EFE /* RailsLogin-Info.plist */,
 				C88787521451FCF700C03EFE /* InfoPlist.strings */,
 				C88787551451FCF700C03EFE /* main.m */,
 				C88787571451FCF700C03EFE /* RailsLogin-Prefix.pch */,
+				C8D63CD914574BEF006967E6 /* RailsUtils.h */,
+				C8D63CDA14574BEF006967E6 /* RailsUtils.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -370,6 +409,9 @@
 				C8664F2414546F6F0039E32B /* SBJsonUTF8Stream.m in Sources */,
 				C8664F2514546F6F0039E32B /* SBJsonWriter.m in Sources */,
 				C8664F2E14547B660039E32B /* SpinnerView.m in Sources */,
+				C8D63CD514573623006967E6 /* RootNavigationController.m in Sources */,
+				C8D63CD814574602006967E6 /* Inflector.m in Sources */,
+				C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
