@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootNavigationController.h"
-#import "ViewController.h"
+#import "LoginController.h"
 
 @implementation AppDelegate
 
@@ -33,7 +33,7 @@
     navigationController.navigationBarHidden = YES;
     
     // add the login controller to the stack
-    ViewController *loginController = [[ViewController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
+    LoginController *loginController = [[LoginController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
     [navigationController pushViewController:loginController animated:NO];
     [loginController release];
     

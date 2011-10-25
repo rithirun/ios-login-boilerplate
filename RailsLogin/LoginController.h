@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LoginController.h
 //  RailsLogin
 //
 //  Created by Brian Celenza on 10/21/11.
@@ -11,7 +11,7 @@
 #import "SpinnerView.h"
 #import "RootNavigationController.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate,AppUserLoginDelegate,UIAlertViewDelegate>
+@interface LoginController : UIViewController <UITextFieldDelegate,AppUserLoginDelegate,UIAlertViewDelegate>
 {
     AppUser *user;
     IBOutlet UITextField *usernameField;

@@ -1,16 +1,17 @@
 //
-//  ViewController.m
+//  LoginController.m
 //  RailsLogin
 //
 //  Created by Brian Celenza on 10/21/11.
 //  Copyright (c) 2011 Millennium Dreamworks. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LoginController.h"
 #import "RegistrationController.h"
 #import "RailsUtils.h"
+#import "Inflector.h"
 
-@implementation ViewController
+@implementation LoginController
 
 @synthesize usernameField, passwordField, registerButton, waitingView, user;
 @synthesize navigationController;

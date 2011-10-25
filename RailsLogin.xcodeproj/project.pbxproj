@@ -27,8 +27,8 @@
 		C88787541451FCF700C03EFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C88787521451FCF700C03EFE /* InfoPlist.strings */; };
 		C88787561451FCF700C03EFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C88787551451FCF700C03EFE /* main.m */; };
 		C887875A1451FCF700C03EFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C88787591451FCF700C03EFE /* AppDelegate.m */; };
-		C887875D1451FCF700C03EFE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C887875C1451FCF700C03EFE /* ViewController.m */; };
-		C88787601451FCF700C03EFE /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C887875E1451FCF700C03EFE /* ViewController.xib */; };
+		C887875D1451FCF700C03EFE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = C887875C1451FCF700C03EFE /* LoginController.m */; };
+		C88787601451FCF700C03EFE /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C887875E1451FCF700C03EFE /* LoginController.xib */; };
 		C88787B91451FD2100C03EFE /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C88787681451FD2100C03EFE /* ASIAuthenticationDialog.m */; };
 		C88787BA1451FD2100C03EFE /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = C887876B1451FD2100C03EFE /* ASIDataCompressor.m */; };
 		C88787BB1451FD2100C03EFE /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = C887876D1451FD2100C03EFE /* ASIDataDecompressor.m */; };
@@ -90,9 +90,9 @@
 		C88787571451FCF700C03EFE /* RailsLogin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RailsLogin-Prefix.pch"; sourceTree = "<group>"; };
 		C88787581451FCF700C03EFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C88787591451FCF700C03EFE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C887875B1451FCF700C03EFE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C887875C1451FCF700C03EFE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C887875F1451FCF700C03EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		C887875B1451FCF700C03EFE /* LoginController.h */ = {isa = PBXFileReference; path = LoginController.h; sourceTree = "<group>"; };
+		C887875C1451FCF700C03EFE /* LoginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		C887875F1451FCF700C03EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginController.xib; sourceTree = "<group>"; };
 		C88787671451FD2100C03EFE /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C88787681451FD2100C03EFE /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C88787691451FD2100C03EFE /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -188,8 +188,8 @@
 		C8683D1B14570F7A00D357BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C887875B1451FCF700C03EFE /* ViewController.h */,
-				C887875C1451FCF700C03EFE /* ViewController.m */,
+				C887875B1451FCF700C03EFE /* LoginController.h */,
+				C887875C1451FCF700C03EFE /* LoginController.m */,
 				C88788001453023B00C03EFE /* RegistrationController.h */,
 				C88788011453023B00C03EFE /* RegistrationController.m */,
 				C8D63CD314573623006967E6 /* RootNavigationController.h */,
@@ -213,7 +213,7 @@
 				C8664F2C14547B660039E32B /* SpinnerView.h */,
 				C8664F2D14547B660039E32B /* SpinnerView.m */,
 				C88788021453023B00C03EFE /* RegistrationController.xib */,
-				C887875E1451FCF700C03EFE /* ViewController.xib */,
+				C887875E1451FCF700C03EFE /* LoginController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -370,7 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C88787541451FCF700C03EFE /* InfoPlist.strings in Resources */,
-				C88787601451FCF700C03EFE /* ViewController.xib in Resources */,
+				C88787601451FCF700C03EFE /* LoginController.xib in Resources */,
 				C88788041453023B00C03EFE /* RegistrationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,7 +384,7 @@
 			files = (
 				C88787561451FCF700C03EFE /* main.m in Sources */,
 				C887875A1451FCF700C03EFE /* AppDelegate.m in Sources */,
-				C887875D1451FCF700C03EFE /* ViewController.m in Sources */,
+				C887875D1451FCF700C03EFE /* LoginController.m in Sources */,
 				C88787B91451FD2100C03EFE /* ASIAuthenticationDialog.m in Sources */,
 				C88787BA1451FD2100C03EFE /* ASIDataCompressor.m in Sources */,
 				C88787BB1451FD2100C03EFE /* ASIDataDecompressor.m in Sources */,
@@ -426,12 +426,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		C887875E1451FCF700C03EFE /* ViewController.xib */ = {
+		C887875E1451FCF700C03EFE /* LoginController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C887875F1451FCF700C03EFE /* en */,
 			);
-			name = ViewController.xib;
+			name = LoginController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
