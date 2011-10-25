@@ -7,11 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "RegistrationController.h"
 #import "SpinnerView.h"
 
 @implementation ViewController
 
-@synthesize usernameField, passwordField, registerLabel, waitingView, user;
+@synthesize usernameField, passwordField, registerButton, waitingView, user;
 
 - (void)loginFormSubmitted
 {
@@ -21,6 +22,7 @@
     [spinner removeFromSuperview];
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -44,13 +46,20 @@
     return YES;
 }
 
+#pragma mark - UIButonDelegate
+- (IBAction)registerButtonClicked:(id)sender
+{
+    RegistrationController *registrationController = [[RegistrationController alloc] initWithNibName:@"RegistrationController" bundle:[NSBundle mainBundle]];
+    [self presentViewController:registrationController animated:YES completion:nil];
+}
+
 #pragma mark - View lifecycle
 
 - (void)releaseOutlets
 {
     self.usernameField = nil;
     self.passwordField = nil;
-    self.registerLabel = nil;
+    self.registerButton = nil;
     self.waitingView = nil;
 }
 

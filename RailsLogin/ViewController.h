@@ -14,7 +14,7 @@
     AppUser *user;
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;
-    IBOutlet UILabel *registerLabel;
+    IBOutlet UIButton *registerButton;
     IBOutlet UIView *waitingView;
 }
 
@@ -22,7 +22,7 @@
 
 @property (nonatomic,retain) IBOutlet UITextField *usernameField;
 @property (nonatomic,retain) IBOutlet UITextField *passwordField;
-@property (nonatomic,retain) IBOutlet UILabel *registerLabel;
+@property (nonatomic,retain) IBOutlet UIButton *registerButton;
 @property (nonatomic,retain) IBOutlet UIView *waitingView;
 @property (nonatomic,retain) AppUser *user;
 
