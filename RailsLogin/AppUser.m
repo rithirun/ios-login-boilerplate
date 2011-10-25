@@ -44,9 +44,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         if(responseCode == 201) {
             NSDictionary *userData = [responseData objectForKey:@"user"];
             user.userId = [[userData objectForKey:@"id"] copy];
-            user.firstname = [[userData objectForKey:@"firstname"] copy];
-            user.lastname = [[userData objectForKey:@"lastname"] copy];
-            user.email = [[userData objectForKey:@"email"] copy];
+            user.firstname = ([[userData objectForKey:@"firstname"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"firstname"];
+            user.lastname = ([[userData objectForKey:@"lastname"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"lastname"];
+            user.email = ([[userData objectForKey:@"email"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"email"];
             
             [parser release];
             NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@", user.userId, user.firstname, user.lastname, user.email);
