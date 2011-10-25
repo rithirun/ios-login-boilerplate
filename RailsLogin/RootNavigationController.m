@@ -10,11 +10,16 @@
 
 @implementation RootNavigationController
 
-@synthesize user = _user;
+@synthesize homeController = _homeController;
+
+- (void)pushHomeController
+{
+    [self pushViewController:self.homeController animated:YES];
+}
 
 -(void)dealloc
 {
-    [self.user release];
+    [self.homeController release];
 }
 
 @end

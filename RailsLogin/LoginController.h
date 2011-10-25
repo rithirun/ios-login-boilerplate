@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AppUser.h"
 #import "SpinnerView.h"
-#import "RootNavigationController.h"
 
 @interface LoginController : UIViewController <UITextFieldDelegate,AppUserLoginDelegate,UIAlertViewDelegate>
 {
@@ -21,14 +20,11 @@
 }
 
 - (void)loginFormSubmitted;
-- (void)loginComplete:(AppUser *)aUser;
-- (void)loginFailed:(NSArray *)errors;
 
 @property (retain) IBOutlet UITextField *usernameField;
 @property (retain) IBOutlet UITextField *passwordField;
 @property (retain) IBOutlet UIButton *registerButton;
 @property (retain) IBOutlet SpinnerView *waitingView;
 @property (nonatomic,retain) AppUser *user;
-@property (retain) RootNavigationController *navigationController;
 
 @end

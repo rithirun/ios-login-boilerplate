@@ -7,6 +7,7 @@
 //
 
 #import "RegistrationController.h"
+#import "RootNavigationController.h"
 #import "AppUser.h"
 #import "SpinnerView.h"
 #import "RailsUtils.h"
@@ -15,7 +16,6 @@
 
 @synthesize emailField, passwordField, passwordConfirmationField, firstnameField, lastnameField, cancelButton, registerButton;
 @synthesize waitingView;
-@synthesize navigationController;
 
 - (void)didReceiveMemoryWarning
 {
@@ -38,19 +38,19 @@
 - (void)registerUser
 {
     self.waitingView = [SpinnerView loadSpinnerIntoView:self.view];
-    AppUser *user = [[AppUser alloc] init];
+    AppUser *user = [AppUser sharedAppUser];
     user.email = emailField.text;
     user.password = passwordField.text;
     user.passwordConfirmation = passwordConfirmationField.text;
     user.firstname = firstnameField.text;
     user.lastname = lastnameField.text;
-    [user register:self];
-    [user release];
+    [user registerWithDelegate:self];
 }
 
-- (void)registrationComplete:(AppUser *)aUser
+- (void)registrationComplete
 {
     [self.waitingView removeFromSuperview];
+    [(RootNavigationController *)self.navigationController pushHomeController];
 }
 
 - (void)registrationFailed:(NSArray *)errors

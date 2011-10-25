@@ -16,7 +16,7 @@
     /**
      The ID associated with this user
      */
-    NSString *_id;
+    NSNumber *_id;
     
     /**
      The email associated with this user object.
@@ -44,12 +44,14 @@
     NSString *_lastname;
 }
 
-@property (retain) NSString *userId;
+@property (retain) NSNumber *userId;
 @property (retain) NSString *email;
 @property (retain) NSString *password;
 @property (retain) NSString *passwordConfirmation;
 @property (retain) NSString *firstname;
 @property (retain) NSString *lastname;
+
++ (AppUser *)sharedAppUser;
 
 /**
  Helper which sets the username and password, then authenticates.
@@ -66,17 +68,17 @@
 /**
  Registers the user, returning a populated user model.
  */
-- (void)register:(id)delegate;
+- (void)registerWithDelegate:(id)delegate;
 
 @end
 
 @protocol AppUserLoginDelegate <NSObject>
-- (void) loginComplete:(AppUser *)user;
+- (void) loginComplete;
 - (void) loginFailed:(NSArray *)errors;
 @end
 
 @protocol AppUserRegistrationDelegate <NSObject>
-- (void) registrationComplete:(AppUser *)user;
+- (void) registrationComplete;
 - (void) registrationFailed:(NSArray *)errors;
 @end
 

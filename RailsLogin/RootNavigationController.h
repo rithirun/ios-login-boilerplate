@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AppUser.h"
 
 @interface RootNavigationController : UINavigationController
 {
     @private
-    AppUser *_user;
+    UIViewController *_homeController;
 }
 
-@property (retain) AppUser *user;
+@property (retain) UIViewController *homeController;
+
+- (void)pushHomeController;
 
 @end

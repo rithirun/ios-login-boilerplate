@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "RootNavigationController.h"
 #import "LoginController.h"
+#import "HomeController.h"
 
 @implementation AppDelegate
 
@@ -31,6 +32,11 @@
     
     // no title bar
     navigationController.navigationBarHidden = YES;
+    
+    // set the first screen to be shown once the user has logged in
+    HomeController *homeController = [[HomeController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
+    navigationController.homeController = homeController;
+    [homeController release];
     
     // add the login controller to the stack
     LoginController *loginController = [[LoginController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];

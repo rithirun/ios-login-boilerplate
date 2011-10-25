@@ -10,12 +10,15 @@
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
 #import "RailsUtils.h"
+#import "SynthesizeSingleton.h"
 
 @implementation AppUser
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
+
 @synthesize userId = _id, email = _email, password = _password, passwordConfirmation = _password_confirmation, firstname = _firstname, lastname = _lastname;
 
-+(void)authenticateUser:(NSString *)email 
++ (void)authenticateUser:(NSString *)email 
            withPassword:(NSString *)password
              requestDelegate:(id)delegate;
 {
@@ -28,7 +31,7 @@
     NSString *postData = [NSString stringWithFormat:@"{\"user\": { \"email\": \"%@\", \"password\": \"%@\" }}", email, password];
     [request appendPostData:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     
-    AppUser *user = [[self alloc] init];
+    AppUser *user = [self sharedAppUser];
     
     // set the completion callback
     [request setCompletionBlock:^{
@@ -48,7 +51,7 @@
             [parser release];
             NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@", user.userId, user.firstname, user.lastname, user.email);
             
-            [delegate loginComplete:user];
+            [delegate loginComplete];
         } else {
             [delegate loginFailed:[RailsUtils errorsArrayFromJson:responseData]];
         }
@@ -63,7 +66,7 @@
     [request startAsynchronous];
 }
 
-- (void)register:(id)delegate
+- (void)registerWithDelegate:(id)delegate
 {
     // setup the request
     NSURL *registerUrl = [NSURL URLWithString:@"http://localhost:3000/users.json"];
@@ -89,7 +92,7 @@
             [parser release];
             NSLog(@"User created with id=%@, firstname=%@, lastname=%@, email=%@", self.userId, self.firstname, self.lastname, self.email);
             
-            [delegate registrationComplete:self];
+            [delegate registrationComplete];
         } else {
             [delegate registrationFailed:[RailsUtils errorsArrayFromJson:responseData]];
         }

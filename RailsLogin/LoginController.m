@@ -8,13 +8,14 @@
 
 #import "LoginController.h"
 #import "RegistrationController.h"
+#import "RootNavigationController.h"
 #import "RailsUtils.h"
 #import "Inflector.h"
+#import "AppDelegate.h"
 
 @implementation LoginController
 
 @synthesize usernameField, passwordField, registerButton, waitingView, user;
-@synthesize navigationController;
 
 - (void)loginFormSubmitted
 {
@@ -25,11 +26,19 @@
     
 }
 
--(void)loginComplete:(AppUser *)aUser
+- (void)didReceiveMemoryWarning
 {
-    self.navigationController.user = aUser;
-    NSLog(@"user id is: %@", self.navigationController.user.userId);
+    [super didReceiveMemoryWarning];
+    // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - AppUserLoginDelegate
+-(void)loginComplete
+{
     [self.waitingView removeFromSuperview];
+    
+    // load the home view controller
+    [(RootNavigationController *)self.navigationController pushHomeController];
 }
 
 -(void)loginFailed:(NSArray *)errors
@@ -38,13 +47,6 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[RailsUtils stringFromErrorsArray:errors] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - UITextFieldDelegate

@@ -49,6 +49,8 @@
 		C8D63CD514573623006967E6 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CD414573623006967E6 /* RootNavigationController.m */; };
 		C8D63CD814574602006967E6 /* Inflector.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CD714574602006967E6 /* Inflector.m */; };
 		C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CDA14574BEF006967E6 /* RailsUtils.m */; };
+		C8D63CE314575C4E006967E6 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CE114575C4E006967E6 /* HomeController.m */; };
+		C8D63CE414575C4E006967E6 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D63CE214575C4E006967E6 /* HomeController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +92,7 @@
 		C88787571451FCF700C03EFE /* RailsLogin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RailsLogin-Prefix.pch"; sourceTree = "<group>"; };
 		C88787581451FCF700C03EFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C88787591451FCF700C03EFE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C887875B1451FCF700C03EFE /* LoginController.h */ = {isa = PBXFileReference; path = LoginController.h; sourceTree = "<group>"; };
+		C887875B1451FCF700C03EFE /* LoginController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		C887875C1451FCF700C03EFE /* LoginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		C887875F1451FCF700C03EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginController.xib; sourceTree = "<group>"; };
 		C88787671451FD2100C03EFE /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -131,6 +133,10 @@
 		C8D63CD714574602006967E6 /* Inflector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflector.m; sourceTree = "<group>"; };
 		C8D63CD914574BEF006967E6 /* RailsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RailsUtils.h; sourceTree = "<group>"; };
 		C8D63CDA14574BEF006967E6 /* RailsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RailsUtils.m; sourceTree = "<group>"; };
+		C8D63CE014575C4E006967E6 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
+		C8D63CE114575C4E006967E6 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
+		C8D63CE214575C4E006967E6 /* HomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
+		C8D63CE5145766BA006967E6 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,8 @@
 				C88788011453023B00C03EFE /* RegistrationController.m */,
 				C8D63CD314573623006967E6 /* RootNavigationController.h */,
 				C8D63CD414573623006967E6 /* RootNavigationController.m */,
+				C8D63CE014575C4E006967E6 /* HomeController.h */,
+				C8D63CE114575C4E006967E6 /* HomeController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 				C8664F2D14547B660039E32B /* SpinnerView.m */,
 				C88788021453023B00C03EFE /* RegistrationController.xib */,
 				C887875E1451FCF700C03EFE /* LoginController.xib */,
+				C8D63CE214575C4E006967E6 /* HomeController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -267,6 +276,7 @@
 		C88787501451FCF700C03EFE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C8D63CE5145766BA006967E6 /* SynthesizeSingleton.h */,
 				C8D63CD614574602006967E6 /* Inflector.h */,
 				C8D63CD714574602006967E6 /* Inflector.m */,
 				C8664F0014546F560039E32B /* SBJson */,
@@ -372,6 +382,7 @@
 				C88787541451FCF700C03EFE /* InfoPlist.strings in Resources */,
 				C88787601451FCF700C03EFE /* LoginController.xib in Resources */,
 				C88788041453023B00C03EFE /* RegistrationController.xib in Resources */,
+				C8D63CE414575C4E006967E6 /* HomeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +423,7 @@
 				C8D63CD514573623006967E6 /* RootNavigationController.m in Sources */,
 				C8D63CD814574602006967E6 /* Inflector.m in Sources */,
 				C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */,
+				C8D63CE314575C4E006967E6 /* HomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

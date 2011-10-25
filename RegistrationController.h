@@ -31,13 +31,9 @@
 @property (retain) IBOutlet UIButton *cancelButton;
 @property (retain) IBOutlet UIButton *registerButton;
 @property (retain) SpinnerView *waitingView;
-@property (retain) RootNavigationController *navigationController;
 
 - (IBAction)cancelButtonPressed:(id)sender;
 - (IBAction)registerButtonPressed:(id)sender;
 - (void)registerUser;
-
-- (void)registrationComplete:(AppUser *)aUser;
-- (void)registrationFailed:(NSArray *)errors;
 
 @end
