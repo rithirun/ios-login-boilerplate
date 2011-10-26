@@ -10,8 +10,9 @@
 #import "AppUser.h"
 #import "SpinnerView.h"
 #import "RootNavigationController.h"
+#import "ScrollViewController.h"
 
-@interface RegistrationController : UIViewController <UITextFieldDelegate,AppUserRegistrationDelegate>
+@interface RegistrationController : ScrollViewController <UITextFieldDelegate,AppUserRegistrationDelegate>
 {
     id delegate;
     

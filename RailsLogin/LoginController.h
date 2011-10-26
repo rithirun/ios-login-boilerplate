@@ -10,8 +10,9 @@
 #import "AppUser.h"
 #import "SpinnerView.h"
 #import "RegistrationController.h"
+#import "ScrollViewController.h"
 
-@interface LoginController : UIViewController <UITextFieldDelegate,AppUserLoginDelegate,UIAlertViewDelegate,RegistrationControllerDelegate>
+@interface LoginController : ScrollViewController <UITextFieldDelegate,AppUserLoginDelegate,UIAlertViewDelegate,RegistrationControllerDelegate>
 {
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;

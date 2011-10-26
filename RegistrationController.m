@@ -18,14 +18,6 @@
 @synthesize emailField, passwordField, passwordConfirmationField, firstnameField, lastnameField, cancelButton, registerButton;
 @synthesize waitingView;
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 - (IBAction)cancelButtonPressed:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -105,13 +97,6 @@
 }
 
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];

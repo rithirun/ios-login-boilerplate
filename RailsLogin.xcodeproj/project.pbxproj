@@ -51,6 +51,7 @@
 		C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CDA14574BEF006967E6 /* RailsUtils.m */; };
 		C8D63CE314575C4E006967E6 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CE114575C4E006967E6 /* HomeController.m */; };
 		C8D63CE414575C4E006967E6 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D63CE214575C4E006967E6 /* HomeController.xib */; };
+		C8D63CF114589303006967E6 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CF014589303006967E6 /* ScrollViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,8 @@
 		C8D63CE114575C4E006967E6 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
 		C8D63CE214575C4E006967E6 /* HomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
 		C8D63CE5145766BA006967E6 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		C8D63CEF14589303006967E6 /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
+		C8D63CF014589303006967E6 /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 				C8D63CD414573623006967E6 /* RootNavigationController.m */,
 				C8D63CE014575C4E006967E6 /* HomeController.h */,
 				C8D63CE114575C4E006967E6 /* HomeController.m */,
+				C8D63CEF14589303006967E6 /* ScrollViewController.h */,
+				C8D63CF014589303006967E6 /* ScrollViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 				C8D63CD814574602006967E6 /* Inflector.m in Sources */,
 				C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */,
 				C8D63CE314575C4E006967E6 /* HomeController.m in Sources */,
+				C8D63CF114589303006967E6 /* ScrollViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

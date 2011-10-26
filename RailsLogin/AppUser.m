@@ -176,7 +176,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 {
     // destory the persisted data
     NSFileManager *manager = [[NSFileManager alloc] init];
-    if ([manager isDeletableFileAtPath:[self userStoragePath]]) {
+    if ([manager fileExistsAtPath:[self userStoragePath]]) {
         NSError *error;
         if (![manager removeItemAtPath:[self userStoragePath] error:&error]) {
             NSLog(@"Error removing file: %@", [error localizedDescription]);
@@ -186,7 +186,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         }
         
     } else {
-        NSLog(@"Do not have permissions to delete user data.");
+        NSLog(@"No userdata file there, moving on.");
     }
     [manager release];
     
