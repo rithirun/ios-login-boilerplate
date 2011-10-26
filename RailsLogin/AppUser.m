@@ -207,8 +207,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     if (!self.userId) {
         // attempt to read user in from storage
         NSString *errorDesc = nil;
-        NSPropertyListFormat *format;
         NSString *plistPath = [self userStoragePath];
+        NSPropertyListFormat *format = nil;
         NSFileManager *fileManager = [[NSFileManager alloc] init];
         if (![fileManager fileExistsAtPath:plistPath]) {
             NSLog(@"UserData.plist does not exist, no login persisted");
@@ -216,7 +216,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         }
         
         NSData *plistXML = [fileManager contentsAtPath:plistPath];
-        NSDictionary *userDict = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+        NSDictionary *userDict = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:format errorDescription:&errorDesc];
         
         [fileManager release];
         if (!userDict) {
