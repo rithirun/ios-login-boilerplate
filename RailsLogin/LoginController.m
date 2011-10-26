@@ -15,15 +15,16 @@
 
 @implementation LoginController
 
-@synthesize usernameField, passwordField, registerButton, waitingView, user;
+@synthesize usernameField, passwordField, registerButton, loginButton, waitingView;
 
-- (void)loginFormSubmitted
+- (void)loginUser
 {
-    self.waitingView = [SpinnerView loadSpinnerIntoView:self.view];
-    [AppUser authenticateUser:self.usernameField.text 
+    if(![self.usernameField.text isEqualToString:@""] && ![self.passwordField.text isEqualToString:@""]) {
+        self.waitingView = [SpinnerView loadSpinnerIntoView:self.view];
+        [AppUser authenticateUser:self.usernameField.text 
                               withPassword:self.passwordField.text
                             requestDelegate:self];
-    
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,19 +51,19 @@
 }
 
 #pragma mark - UITextFieldDelegate
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    
-    if ([textField isEqual:self.usernameField]) {
-        [self.passwordField becomeFirstResponder];
-    } else {
-        [self loginFormSubmitted];
-    }
-}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
-    return YES;
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
+    
+    if(nextResponder) {
+        [nextResponder becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+        [self loginUser];
+    }
+    
+    return NO;
 }
 
 #pragma mark - UIButonDelegate
@@ -72,6 +73,11 @@
     [self presentViewController:registrationController animated:YES completion:nil];
 }
 
+- (IBAction)loginButtonClicked:(id)sender
+{
+    [self loginUser];
+}
+
 #pragma mark - View lifecycle
 
 - (void)releaseOutlets
@@ -79,6 +85,7 @@
     self.usernameField = nil;
     self.passwordField = nil;
     self.registerButton = nil;
+    self.loginButton = nil;
     self.waitingView = nil;
 }
 

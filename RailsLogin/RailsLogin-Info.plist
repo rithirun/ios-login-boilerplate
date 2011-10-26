@@ -36,5 +36,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>Application URLs</key>
+	<dict>
+		<key>Base</key>
+		<string>http://localhost:3000</string>
+		<key>Users</key>
+		<string>/users.json</string>
+		<key>Sessions</key>
+		<string>/sessions.json</string>
+	</dict>
 </dict>
 </plist>

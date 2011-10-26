@@ -12,19 +12,19 @@
 
 @interface LoginController : UIViewController <UITextFieldDelegate,AppUserLoginDelegate,UIAlertViewDelegate>
 {
-    AppUser *user;
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;
     IBOutlet UIButton *registerButton;
+    IBOutlet UIButton *loginButton;
     IBOutlet SpinnerView *waitingView;
 }
 
-- (void)loginFormSubmitted;
+- (void)loginUser;
 
-@property (retain) IBOutlet UITextField *usernameField;
-@property (retain) IBOutlet UITextField *passwordField;
-@property (retain) IBOutlet UIButton *registerButton;
-@property (retain) IBOutlet SpinnerView *waitingView;
-@property (nonatomic,retain) AppUser *user;
+@property (nonatomic,retain) IBOutlet UITextField *usernameField;
+@property (nonatomic,retain) IBOutlet UITextField *passwordField;
+@property (nonatomic,retain) IBOutlet UIButton *registerButton;
+@property (nonatomic,retain) IBOutlet UIButton *loginButton;
+@property (nonatomic,retain) IBOutlet SpinnerView *waitingView;
 
 @end

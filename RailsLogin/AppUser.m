@@ -16,20 +16,41 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 
-@synthesize userId = _id, email = _email, password = _password, passwordConfirmation = _password_confirmation, firstname = _firstname, lastname = _lastname;
+@synthesize userId, email, password, passwordConfirmation, firstname, lastname, apiKey;
+
+- (void)dealloc
+{
+    [self.userId release];
+    [self.email release];
+    [self.password release];
+    [self.passwordConfirmation release];
+    [self.firstname release];
+    [self.lastname release];
+    [self.apiKey release];
+    [super dealloc];
+}
 
 + (void)authenticateUser:(NSString *)email 
            withPassword:(NSString *)password
              requestDelegate:(id)delegate;
 {
     // setup the request
-    NSURL *authenticationUrl = [NSURL URLWithString:@"http://localhost:3000/sessions.json"];
+    NSDictionary *urlDict = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Application URLs"];
+    NSURL *authenticationUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", 
+                                                     [urlDict objectForKey:@"Base"],
+                                                     [urlDict objectForKey:@"Sessions"]]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:authenticationUrl];
     request.requestMethod = @"POST";
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     
-    NSString *postData = [NSString stringWithFormat:@"{\"user\": { \"email\": \"%@\", \"password\": \"%@\" }}", email, password];
-    [request appendPostData:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    NSArray *keys = [NSArray arrayWithObjects:@"email", @"password", nil];
+    NSArray *values = [NSArray arrayWithObjects:email, password, nil];
+    NSDictionary *userData = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    NSDictionary *postData = [NSDictionary dictionaryWithObject:userData forKey:@"user"];
+    SBJsonWriter *jsonWriter = [[SBJsonWriter alloc] init];
+    NSString *postBody = [jsonWriter stringWithObject:postData];
+    [request appendPostData:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    [jsonWriter release];
     
     AppUser *user = [self sharedAppUser];
     
@@ -43,13 +64,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         // if user errors
         if(responseCode == 201) {
             NSDictionary *userData = [responseData objectForKey:@"user"];
-            user.userId = [[userData objectForKey:@"id"] copy];
+            user.userId = [userData objectForKey:@"id"];
             user.firstname = ([[userData objectForKey:@"firstname"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"firstname"];
             user.lastname = ([[userData objectForKey:@"lastname"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"lastname"];
             user.email = ([[userData objectForKey:@"email"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"email"];
+            user.apiKey = [userData objectForKey:@"api_key"];
             
             [parser release];
-            NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@", user.userId, user.firstname, user.lastname, user.email);
+            NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", user.userId, user.firstname, user.lastname, user.email, user.apiKey);
             
             [delegate loginComplete];
         } else {
@@ -69,14 +91,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 - (void)registerWithDelegate:(id)delegate
 {
     // setup the request
-    NSURL *registerUrl = [NSURL URLWithString:@"http://localhost:3000/users.json"];
+    NSDictionary *urlDict = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Application URLs"];
+    NSURL *registerUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                               [urlDict objectForKey:@"Base"],
+                                               [urlDict objectForKey:@"Users"]]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:registerUrl];
     request.requestMethod = @"POST";
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     
     // set the post data
-    NSString *postData = [NSString stringWithFormat:@"{\"user\": { \"email\": \"%@\", \"password\": \"%@\", \"password_confirmation\":\"%@\", \"firstname\":\"%@\", \"lastname\":\"%@\" }}", self.email, self.password, self.passwordConfirmation, self.firstname, self.lastname];
-    [request appendPostData:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    NSArray *keys = [NSArray arrayWithObjects:@"email", @"password", @"password_confirmation", @"firstname", @"lastname", nil];
+    NSArray *values = [NSArray arrayWithObjects:self.email, self.password, self.passwordConfirmation, self.firstname, self.lastname, nil];
+    NSDictionary *userData = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    NSDictionary *postData = [NSDictionary dictionaryWithObject:userData forKey:@"user"];
+    SBJsonWriter *jsonWriter = [[SBJsonWriter alloc] init];
+    NSString *postBody = [jsonWriter stringWithObject:postData];
+    [request appendPostData:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    [jsonWriter release];
     
     // set the completion callback
     [request setCompletionBlock:^{
@@ -87,10 +118,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         
         if(responseCode == 201) {
             NSDictionary *userData = [responseData objectForKey:@"user"];
-            self.userId = [[userData objectForKey:@"id"] copy];
+            self.userId = [userData objectForKey:@"id"];
+            self.apiKey = [userData objectForKey:@"api_key"];
             
             [parser release];
-            NSLog(@"User created with id=%@, firstname=%@, lastname=%@, email=%@", self.userId, self.firstname, self.lastname, self.email);
+            NSLog(@"User created with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", self.userId, self.firstname, self.lastname, self.email, self.apiKey);
             
             [delegate registrationComplete];
         } else {
@@ -105,17 +137,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     
     // execute the request
     [request startAsynchronous];
-}
-
--(void)dealloc
-{
-    [self.userId release];
-    [self.email release];
-    [self.password release];
-    [self.passwordConfirmation release];
-    [self.firstname release];
-    [self.lastname release];
-    [super dealloc];
 }
 
 @end

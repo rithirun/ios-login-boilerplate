@@ -74,26 +74,18 @@
 }
 
 #pragma mark - UITextFieldDelegate
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-
-    NSArray *fieldArray = [NSArray arrayWithObjects:self.emailField, 
-                           self.passwordField, self.passwordConfirmationField, 
-                           self.firstnameField, self.lastnameField, nil];
-    
-    // if not the last field
-    if(![textField isEqual:self.lastnameField]) {
-        // focus the next field
-        UITextField *nextField = [fieldArray objectAtIndex:([fieldArray indexOfObject:textField] + 1)];
-        [nextField becomeFirstResponder];
-    } else {
-        [self registerUser];
-    }
-}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
-    return YES;
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
+    
+    if(nextResponder) {
+        [nextResponder becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+        [self registerUser];
+    }
+    return NO;
 }
 
 #pragma mark - View lifecycle

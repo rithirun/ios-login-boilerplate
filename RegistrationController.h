@@ -23,14 +23,14 @@
     SpinnerView *waitingView;
 }
 
-@property (retain) IBOutlet UITextField *emailField;
-@property (retain) IBOutlet UITextField *passwordField;
-@property (retain) IBOutlet UITextField *passwordConfirmationField;
-@property (retain) IBOutlet UITextField *firstnameField;
-@property (retain) IBOutlet UITextField *lastnameField;
-@property (retain) IBOutlet UIButton *cancelButton;
-@property (retain) IBOutlet UIButton *registerButton;
-@property (retain) SpinnerView *waitingView;
+@property (nonatomic,retain) IBOutlet UITextField *emailField;
+@property (nonatomic,retain) IBOutlet UITextField *passwordField;
+@property (nonatomic,retain) IBOutlet UITextField *passwordConfirmationField;
+@property (nonatomic,retain) IBOutlet UITextField *firstnameField;
+@property (nonatomic,retain) IBOutlet UITextField *lastnameField;
+@property (nonatomic,retain) IBOutlet UIButton *cancelButton;
+@property (nonatomic,retain) IBOutlet UIButton *registerButton;
+@property (nonatomic,retain) SpinnerView *waitingView;
 
 - (IBAction)cancelButtonPressed:(id)sender;
 - (IBAction)registerButtonPressed:(id)sender;

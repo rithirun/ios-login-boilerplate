@@ -12,44 +12,50 @@
 
 @interface AppUser : NSObject
 {
-@private
+    @private
     /**
      The ID associated with this user
      */
-    NSNumber *_id;
+    NSNumber *userId;
     
     /**
      The email associated with this user object.
      */
-    NSString *_email;
+    NSString *email;
     
     /**
      The password for this user when registering.
      */
-    NSString *_password;
+    NSString *password;
     
     /**
      The password confirmation for the user when registering.
      */
-    NSString *_password_confirmation;
+    NSString *passwordConfirmation;
     
     /**
      The user's first name
      */
-    NSString *_firstname;
+    NSString *firstname;
     
     /**
      The user's last name
      */
-    NSString *_lastname;
+    NSString *lastname;
+    
+    /**
+     A key for accessing the site via APIs
+     */
+    NSString *apiKey;
 }
 
-@property (retain) NSNumber *userId;
-@property (retain) NSString *email;
-@property (retain) NSString *password;
-@property (retain) NSString *passwordConfirmation;
-@property (retain) NSString *firstname;
-@property (retain) NSString *lastname;
+@property (nonatomic,retain) NSNumber *userId;
+@property (nonatomic,retain) NSString *email;
+@property (nonatomic,retain) NSString *password;
+@property (nonatomic,retain) NSString *passwordConfirmation;
+@property (nonatomic,retain) NSString *firstname;
+@property (nonatomic,retain) NSString *lastname;
+@property (nonatomic,retain) NSString *apiKey;
 
 + (AppUser *)sharedAppUser;
 
