@@ -12,7 +12,7 @@
 
 @implementation HomeController
 
-@synthesize userIdField, emailField, firstnameField, lastnameField;
+@synthesize userIdField, emailField, firstnameField, lastnameField, logoutButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -20,6 +20,12 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (IBAction)logoutPressed:(UIButton *)sender
+{
+    [[AppUser sharedAppUser] logout];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -30,6 +36,7 @@
     emailField = nil;
     firstnameField = nil;
     lastnameField = nil;
+    logoutButton = nil;
 }
 
 - (void)viewDidLoad

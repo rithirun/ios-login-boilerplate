@@ -11,10 +11,10 @@
 @interface RootNavigationController : UINavigationController
 {
     @private
-    UIViewController *_homeController;
+    UIViewController *homeController;
 }
 
-@property (retain) UIViewController *homeController;
+@property (nonatomic,retain) UIViewController *homeController;
 
 - (void)pushHomeController;
 

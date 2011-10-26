@@ -15,11 +15,15 @@
     IBOutlet UILabel *emailField;
     IBOutlet UILabel *firstnameField;
     IBOutlet UILabel *lastnameField;
+    IBOutlet UIButton *logoutButton;
 }
 
-@property (retain) IBOutlet UILabel *userIdField;
-@property (retain) IBOutlet UILabel *emailField;
-@property (retain) IBOutlet UILabel *firstnameField;
-@property (retain) IBOutlet UILabel *lastnameField;
+@property (nonatomic,retain) IBOutlet UILabel *userIdField;
+@property (nonatomic,retain) IBOutlet UILabel *emailField;
+@property (nonatomic,retain) IBOutlet UILabel *firstnameField;
+@property (nonatomic,retain) IBOutlet UILabel *lastnameField;
+@property (nonatomic,retain) IBOutlet UIButton *logoutButton;
+
+- (IBAction)logoutPressed:(UIButton *)sender;
 
 @end

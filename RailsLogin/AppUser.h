@@ -70,11 +70,27 @@
             withPassword:(NSString *)password
               requestDelegate:(id)delegate;
 
-
 /**
  Registers the user, returning a populated user model.
  */
 - (void)registerWithDelegate:(id)delegate;
+
+/**
+ Persists the user for each launch. Returns true if successful
+ */
+- (BOOL)persist;
+
+/**
+ Logs the user out, removing from persisted storage
+ */
+- (void)logout;
+
+/**
+ Returns true if the user has been authenticated
+ */
+- (BOOL)isAuthenticated;
+
+- (NSString *)userStoragePath;
 
 @end
 

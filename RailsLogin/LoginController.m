@@ -15,7 +15,7 @@
 
 @implementation LoginController
 
-@synthesize usernameField, passwordField, registerButton, loginButton, waitingView;
+@synthesize usernameField, passwordField, registerButton, loginButton, rememberSwitch, waitingView;
 
 - (void)loginUser
 {
@@ -36,7 +36,18 @@
 #pragma mark - AppUserLoginDelegate
 -(void)loginComplete
 {
+    // if remember me is on, persist
+    if ([rememberSwitch isOn]) {
+        [[AppUser sharedAppUser] persist];
+    }
+    
+    // remove the waiting view
     [self.waitingView removeFromSuperview];
+    
+    // remove loggin information, set back to default
+    self.usernameField.text = @"";
+    self.passwordField.text = @"";
+    [self.rememberSwitch setOn:YES];
     
     // load the home view controller
     [(RootNavigationController *)self.navigationController pushHomeController];
@@ -86,6 +97,7 @@
     self.passwordField = nil;
     self.registerButton = nil;
     self.loginButton = nil;
+    self.rememberSwitch = nil;
     self.waitingView = nil;
 }
 

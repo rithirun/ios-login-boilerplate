@@ -10,6 +10,7 @@
 #import "RootNavigationController.h"
 #import "LoginController.h"
 #import "HomeController.h"
+#import "AppUser.h"
 
 @implementation AppDelegate
 
@@ -43,6 +44,11 @@
     [navigationController pushViewController:loginController animated:NO];
     [loginController release];
     
+    // if the user is logged in already, go directly to the home controller
+    if ([[AppUser sharedAppUser] isAuthenticated]) {
+        [navigationController pushHomeController];
+    }
+        
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -84,6 +90,7 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+//    [[AppUser sharedAppUser] persist];
 }
 
 @end

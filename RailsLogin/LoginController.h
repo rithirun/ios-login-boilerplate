@@ -16,6 +16,7 @@
     IBOutlet UITextField *passwordField;
     IBOutlet UIButton *registerButton;
     IBOutlet UIButton *loginButton;
+    IBOutlet UISwitch *rememberSwitch;
     IBOutlet SpinnerView *waitingView;
 }
 
@@ -25,6 +26,7 @@
 @property (nonatomic,retain) IBOutlet UITextField *passwordField;
 @property (nonatomic,retain) IBOutlet UIButton *registerButton;
 @property (nonatomic,retain) IBOutlet UIButton *loginButton;
+@property (nonatomic,retain) IBOutlet UISwitch *rememberSwitch;
 @property (nonatomic,retain) IBOutlet SpinnerView *waitingView;
 
 @end

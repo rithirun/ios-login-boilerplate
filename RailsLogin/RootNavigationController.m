@@ -10,7 +10,7 @@
 
 @implementation RootNavigationController
 
-@synthesize homeController = _homeController;
+@synthesize homeController;
 
 - (void)pushHomeController
 {
