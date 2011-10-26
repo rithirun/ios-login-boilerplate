@@ -13,6 +13,8 @@
 
 @interface RegistrationController : UIViewController <UITextFieldDelegate,AppUserRegistrationDelegate>
 {
+    id delegate;
+    
     IBOutlet UITextField *emailField;
     IBOutlet UITextField *passwordField;
     IBOutlet UITextField *passwordConfirmationField;
@@ -22,6 +24,8 @@
     IBOutlet UIButton *registerButton;
     SpinnerView *waitingView;
 }
+
+@property (nonatomic,retain) id delegate;
 
 @property (nonatomic,retain) IBOutlet UITextField *emailField;
 @property (nonatomic,retain) IBOutlet UITextField *passwordField;
@@ -35,5 +39,11 @@
 - (IBAction)cancelButtonPressed:(id)sender;
 - (IBAction)registerButtonPressed:(id)sender;
 - (void)registerUser;
+
+@end
+
+@protocol RegistrationControllerDelegate <NSObject>
+
+- (void)registrationComplete;
 
 @end

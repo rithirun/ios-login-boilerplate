@@ -14,6 +14,7 @@
 
 @implementation RegistrationController
 
+@synthesize delegate;
 @synthesize emailField, passwordField, passwordConfirmationField, firstnameField, lastnameField, cancelButton, registerButton;
 @synthesize waitingView;
 
@@ -49,8 +50,23 @@
 
 - (void)registrationComplete
 {
+    // remove loading view
     [self.waitingView removeFromSuperview];
-    [(RootNavigationController *)self.navigationController pushHomeController];
+    
+    // set all fields back to default
+    self.emailField.text = @"";
+    self.passwordField.text = @"";
+    self.passwordConfirmationField.text = @"";
+    self.firstnameField.text = @"";
+    self.lastnameField.text = @"";
+    
+    // dismiss this view
+    [self dismissModalViewControllerAnimated:YES];
+    
+    // call the delegates registrationComplete method
+    if (self.delegate) {
+        [delegate registrationComplete];
+    }
 }
 
 - (void)registrationFailed:(NSArray *)errors

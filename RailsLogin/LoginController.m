@@ -7,7 +7,6 @@
 //
 
 #import "LoginController.h"
-#import "RegistrationController.h"
 #import "RootNavigationController.h"
 #import "RailsUtils.h"
 #import "Inflector.h"
@@ -81,12 +80,19 @@
 - (IBAction)registerButtonClicked:(id)sender
 {
     RegistrationController *registrationController = [[RegistrationController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
+    registrationController.delegate = self;
     [self presentViewController:registrationController animated:YES completion:nil];
 }
 
 - (IBAction)loginButtonClicked:(id)sender
 {
     [self loginUser];
+}
+
+#pragma mark - RegistrationControllerDelegate
+- (void)registrationComplete
+{
+    [(RootNavigationController *)self.navigationController pushHomeController];
 }
 
 #pragma mark - View lifecycle

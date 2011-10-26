@@ -194,10 +194,7 @@
 		C8683D1B14570F7A00D357BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C887875B1451FCF700C03EFE /* LoginController.h */,
-				C887875C1451FCF700C03EFE /* LoginController.m */,
-				C88788001453023B00C03EFE /* RegistrationController.h */,
-				C88788011453023B00C03EFE /* RegistrationController.m */,
+				C8D63CE9145872AA006967E6 /* Login and Registration */,
 				C8D63CD314573623006967E6 /* RootNavigationController.h */,
 				C8D63CD414573623006967E6 /* RootNavigationController.m */,
 				C8D63CE014575C4E006967E6 /* HomeController.h */,
@@ -218,10 +215,9 @@
 		C8683D1F1457104200D357BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8D63CEA145872C2006967E6 /* Login and Registration */,
 				C8664F2C14547B660039E32B /* SpinnerView.h */,
 				C8664F2D14547B660039E32B /* SpinnerView.m */,
-				C88788021453023B00C03EFE /* RegistrationController.xib */,
-				C887875E1451FCF700C03EFE /* LoginController.xib */,
 				C8D63CE214575C4E006967E6 /* HomeController.xib */,
 			);
 			name = Views;
@@ -326,6 +322,26 @@
 				C88787E01451FD4200C03EFE /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		C8D63CE9145872AA006967E6 /* Login and Registration */ = {
+			isa = PBXGroup;
+			children = (
+				C887875B1451FCF700C03EFE /* LoginController.h */,
+				C887875C1451FCF700C03EFE /* LoginController.m */,
+				C88788001453023B00C03EFE /* RegistrationController.h */,
+				C88788011453023B00C03EFE /* RegistrationController.m */,
+			);
+			name = "Login and Registration";
+			sourceTree = "<group>";
+		};
+		C8D63CEA145872C2006967E6 /* Login and Registration */ = {
+			isa = PBXGroup;
+			children = (
+				C88788021453023B00C03EFE /* RegistrationController.xib */,
+				C887875E1451FCF700C03EFE /* LoginController.xib */,
+			);
+			name = "Login and Registration";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
