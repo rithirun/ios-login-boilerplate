@@ -8,11 +8,15 @@
 
 #import "RailsUtils.h"
 #import "Inflector.h"
+#import "SBJson.h"
 
 @implementation RailsUtils
 
-+ (NSArray *)errorsArrayFromJson:(NSDictionary *)errorsDict
++ (NSArray *)errorsArrayFromJson:(NSString *)jsonString
 {
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSDictionary *errorsDict = [jsonParser objectWithString:jsonString];
+    
     NSArray *errorsArray = [[[NSArray alloc] init] autorelease];
     for (NSString *key in errorsDict) {
         NSString *humanizedKey = [Inflector humanize:key];
@@ -22,6 +26,9 @@
             errorsArray = [errorsArray arrayByAddingObject:[NSString stringWithFormat:@"%@ %@", humanizedKey, [errorMessages objectAtIndex:i]]];
         }
     }
+    
+    // cleanup memory
+    [jsonParser release];
     
     return errorsArray;
 }

@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SerializableObject.h"
 
 
-
-@interface AppUser : NSObject
+@interface AppUser : SerializableObject
 {
-    @private
+@private
     /**
      The ID associated with this user
      */
@@ -68,7 +68,7 @@
  */
 + (void)authenticateUser:(NSString *)email 
             withPassword:(NSString *)password
-              requestDelegate:(id)delegate;
+         requestDelegate:(id)delegate;
 
 /**
  Registers the user, returning a populated user model.

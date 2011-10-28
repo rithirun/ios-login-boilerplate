@@ -10,7 +10,7 @@
 
 @interface RailsUtils : NSObject
 
-+ (NSArray *)errorsArrayFromJson:(NSDictionary *)errorsDict;
++ (NSArray *)errorsArrayFromJson:(NSString *)jsonString;
 + (NSString *)stringFromErrorsArray:(NSArray *)errors;
 
 @end

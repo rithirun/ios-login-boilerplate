@@ -45,9 +45,9 @@
     // Do any additional setup after loading the view from its nib.
     AppUser *user = [AppUser sharedAppUser];
     self.userIdField.text = [user.userId stringValue];
-    self.emailField.text = user.email;
-    self.firstnameField.text = user.firstname;
-    self.lastnameField.text = user.lastname;
+    self.emailField.text = ([user.email isEqual:[NSNull null]]) ? @"" : user.email;
+    self.firstnameField.text = ([user.firstname isEqual:[NSNull null]]) ? @"" : user.firstname;
+    self.lastnameField.text = ([user.lastname isEqual:[NSNull null]]) ? @"" : user.lastname;
 }
 
 - (void)viewDidUnload

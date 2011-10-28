@@ -8,7 +8,6 @@
 
 #import "AppUser.h"
 #import "ASIHTTPRequest.h"
-#import "SBJson.h"
 #import "RailsUtils.h"
 #import "SynthesizeSingleton.h"
 
@@ -30,10 +29,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     [super dealloc];
 }
 
-+ (void)authenticateUser:(NSString *)email 
-           withPassword:(NSString *)password
-             requestDelegate:(id)delegate;
+- (id)init
 {
+    if (self = [super init]) {
+        // set the object name (when serialized)
+        self.objectName = @"user";
+        // set the serializable properties and their serialized counterparts
+        self.serializableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"id", @"userId",
+                                       @"", @"email",
+                                       @"", @"password",
+                                       @"password_confirmation", @"passwordConfirmation",
+                                       @"", @"firstname",
+                                       @"", @"lastname",
+                                       @"api_key", @"apiKey",
+                                       nil];
+    }
+    return self;
+}
+
++ (void)authenticateUser:(NSString *)email 
+            withPassword:(NSString *)password
+         requestDelegate:(id)delegate;
+{
+    // initialize the user
+    AppUser *user = [self sharedAppUser];
+    user.email = email;
+    user.password = password;
+    
     // setup the request
     NSDictionary *urlDict = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Application URLs"];
     NSURL *authenticationUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", 
@@ -43,40 +66,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     request.requestMethod = @"POST";
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     
-    NSArray *keys = [NSArray arrayWithObjects:@"email", @"password", nil];
-    NSArray *values = [NSArray arrayWithObjects:email, password, nil];
-    NSDictionary *userData = [NSDictionary dictionaryWithObjects:values forKeys:keys];
-    NSDictionary *postData = [NSDictionary dictionaryWithObject:userData forKey:@"user"];
-    SBJsonWriter *jsonWriter = [[SBJsonWriter alloc] init];
-    NSString *postBody = [jsonWriter stringWithObject:postData];
-    [request appendPostData:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
-    [jsonWriter release];
-    
-    AppUser *user = [self sharedAppUser];
+    // add the post body
+    NSString *postBody = [user toJson];
+    [request appendPostData:[postBody dataUsingEncoding:NSUTF8StringEncoding]];    
     
     // set the completion callback
-    [request setCompletionBlock:^{
-        NSString *response = [request responseString];
-        int responseCode = [request responseStatusCode];
-        SBJsonParser *parser = [[SBJsonParser alloc] init];
-        NSDictionary *responseData = [parser objectWithString:response];
-        
+    [request setCompletionBlock:^{        
         // response code 201 = Created
-        if(responseCode == 201) {
+        if([request responseStatusCode] == 201) {
             // set user data from response
-            NSDictionary *userData = [responseData objectForKey:@"user"];
-            user.userId = [userData objectForKey:@"id"];
-            user.firstname = ([[userData objectForKey:@"firstname"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"firstname"];
-            user.lastname = ([[userData objectForKey:@"lastname"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"lastname"];
-            user.email = ([[userData objectForKey:@"email"] isKindOfClass:[NSNull class]]) ? @"" : [userData objectForKey:@"email"];
-            user.apiKey = [userData objectForKey:@"api_key"];
+            [user fromJson:[request responseString]];
             
-            [parser release];
             NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", user.userId, user.firstname, user.lastname, user.email, user.apiKey);
             
             [delegate loginComplete];
         } else {
-            [delegate loginFailed:[RailsUtils errorsArrayFromJson:responseData]];
+            [delegate loginFailed:[RailsUtils errorsArrayFromJson:[request responseString]]];
         }
     }];
     
@@ -94,41 +99,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     // setup the request
     NSDictionary *urlDict = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Application URLs"];
     NSURL *registerUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
-                                               [urlDict objectForKey:@"Base"],
+                                               [urlDict objectForKey:@"Base"], 
                                                [urlDict objectForKey:@"Users"]]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:registerUrl];
     request.requestMethod = @"POST";
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     
     // set the post data
-    NSArray *keys = [NSArray arrayWithObjects:@"email", @"password", @"password_confirmation", @"firstname", @"lastname", nil];
-    NSArray *values = [NSArray arrayWithObjects:self.email, self.password, self.passwordConfirmation, self.firstname, self.lastname, nil];
-    NSDictionary *userData = [NSDictionary dictionaryWithObjects:values forKeys:keys];
-    NSDictionary *postData = [NSDictionary dictionaryWithObject:userData forKey:@"user"];
-    SBJsonWriter *jsonWriter = [[SBJsonWriter alloc] init];
-    NSString *postBody = [jsonWriter stringWithObject:postData];
+    NSString *postBody = [self toJson];
     [request appendPostData:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
-    [jsonWriter release];
     
     // set the completion callback
-    [request setCompletionBlock:^{
-        NSString *response = [request responseString];
-        int responseCode = [request responseStatusCode];
-        SBJsonParser *parser = [[SBJsonParser alloc] init];
-        NSDictionary *responseData = [parser objectWithString:response];
-        
-        if(responseCode == 201) {
+    [request setCompletionBlock:^{        
+        if([request responseStatusCode] == 201) {
             // set user data from response
-            NSDictionary *userData = [responseData objectForKey:@"user"];
-            self.userId = [userData objectForKey:@"id"];
-            self.apiKey = [userData objectForKey:@"api_key"];
-            
-            [parser release];
+            [self fromJson:[request responseString]];
             NSLog(@"User created with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", self.userId, self.firstname, self.lastname, self.email, self.apiKey);
             
             [delegate registrationComplete];
         } else {
-            [delegate registrationFailed:[RailsUtils errorsArrayFromJson:responseData]];
+            [delegate registrationFailed:[RailsUtils errorsArrayFromJson:[request responseString]]];
         }
     }];
     

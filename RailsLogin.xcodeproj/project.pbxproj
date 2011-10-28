@@ -46,6 +46,7 @@
 		C88787F11451FF1A00C03EFE /* AppUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C88787F01451FF1A00C03EFE /* AppUser.m */; };
 		C88788031453023B00C03EFE /* RegistrationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88788011453023B00C03EFE /* RegistrationController.m */; };
 		C88788041453023B00C03EFE /* RegistrationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88788021453023B00C03EFE /* RegistrationController.xib */; };
+		C8D3BDCC145B1DCF0095C8FC /* SerializableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D3BDCB145B1DCF0095C8FC /* SerializableObject.m */; };
 		C8D63CD514573623006967E6 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CD414573623006967E6 /* RootNavigationController.m */; };
 		C8D63CD814574602006967E6 /* Inflector.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CD714574602006967E6 /* Inflector.m */; };
 		C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D63CDA14574BEF006967E6 /* RailsUtils.m */; };
@@ -128,6 +129,8 @@
 		C88788001453023B00C03EFE /* RegistrationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationController.h; path = ../RegistrationController.h; sourceTree = "<group>"; };
 		C88788011453023B00C03EFE /* RegistrationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationController.m; path = ../RegistrationController.m; sourceTree = "<group>"; };
 		C88788021453023B00C03EFE /* RegistrationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegistrationController.xib; path = ../RegistrationController.xib; sourceTree = "<group>"; };
+		C8D3BDCA145B1DCF0095C8FC /* SerializableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerializableObject.h; sourceTree = "<group>"; };
+		C8D3BDCB145B1DCF0095C8FC /* SerializableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerializableObject.m; sourceTree = "<group>"; };
 		C8D63CD314573623006967E6 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavigationController.h; sourceTree = "<group>"; };
 		C8D63CD414573623006967E6 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
 		C8D63CD614574602006967E6 /* Inflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflector.h; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 				C88787571451FCF700C03EFE /* RailsLogin-Prefix.pch */,
 				C8D63CD914574BEF006967E6 /* RailsUtils.h */,
 				C8D63CDA14574BEF006967E6 /* RailsUtils.m */,
+				C8D3BDCA145B1DCF0095C8FC /* SerializableObject.h */,
+				C8D3BDCB145B1DCF0095C8FC /* SerializableObject.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				C8D63CDB14574BEF006967E6 /* RailsUtils.m in Sources */,
 				C8D63CE314575C4E006967E6 /* HomeController.m in Sources */,
 				C8D63CF114589303006967E6 /* ScrollViewController.m in Sources */,
+				C8D3BDCC145B1DCF0095C8FC /* SerializableObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
