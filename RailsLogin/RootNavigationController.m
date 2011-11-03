@@ -14,12 +14,12 @@
 
 - (void)pushHomeController
 {
-    [self pushViewController:self.homeController animated:YES];
+    [self pushViewController:homeController animated:YES];
 }
 
 -(void)dealloc
 {
-    [self.homeController release];
+    [homeController release];
 }
 
 @end

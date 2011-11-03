@@ -19,13 +19,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 
 - (void)dealloc
 {
-    [self.userId release];
-    [self.email release];
-    [self.password release];
-    [self.passwordConfirmation release];
-    [self.firstname release];
-    [self.lastname release];
-    [self.apiKey release];
+    [userId release];
+    [email release];
+    [password release];
+    [passwordConfirmation release];
+    [firstname release];
+    [lastname release];
+    [apiKey release];
     [super dealloc];
 }
 
@@ -33,19 +33,46 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 {
     if (self = [super init]) {
         // set the object name (when serialized)
-        self.objectName = @"user";
+        objectName = @"user";
         // set the serializable properties and their serialized counterparts
-        self.serializableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       @"id", @"userId",
-                                       @"", @"email",
-                                       @"", @"password",
-                                       @"password_confirmation", @"passwordConfirmation",
-                                       @"", @"firstname",
-                                       @"", @"lastname",
-                                       @"api_key", @"apiKey",
-                                       nil];
+        serializableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  @"id", @"userId",
+                                  @"", @"email",
+                                  @"", @"password",
+                                  @"password_confirmation", @"passwordConfirmation",
+                                  @"", @"firstname",
+                                  @"", @"lastname",
+                                  @"api_key", @"apiKey",
+                                  nil];
     }
     return self;
+}
+
+- (void)setFirstname:(NSString *)aFirstname
+{
+    if ([aFirstname isEqual:[NSNull null]]) {
+        firstname = @"";
+    } else {
+        firstname = aFirstname;
+    }
+}
+
+- (void)setLastname:(NSString *)aLastname
+{
+    if ([aLastname isEqual:[NSNull null]]) {
+        lastname = @"";
+    } else {
+        lastname = aLastname;
+    }
+}
+
+- (void)setApiKey:(NSString *)anApiKey
+{
+    if ([anApiKey isEqual:[NSNull null]]) {
+        apiKey = @"";
+    } else {
+        apiKey = anApiKey;
+    }
 }
 
 + (void)authenticateUser:(NSString *)email 
@@ -54,8 +81,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 {
     // initialize the user
     AppUser *user = [self sharedAppUser];
-    user.email = email;
-    user.password = password;
+    [user setEmail:email];
+    [user setPassword:password];
     
     // setup the request
     NSDictionary *urlDict = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Application URLs"];
@@ -63,7 +90,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
                                                      [urlDict objectForKey:@"Base"],
                                                      [urlDict objectForKey:@"Sessions"]]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:authenticationUrl];
-    request.requestMethod = @"POST";
+    [request setRequestMethod:@"POST"];
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     
     // add the post body
@@ -77,7 +104,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
             // set user data from response
             [user fromJson:[request responseString]];
             
-            NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", user.userId, user.firstname, user.lastname, user.email, user.apiKey);
+            NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", [user userId], [user firstname], [user lastname], [user email], [user apiKey]);
             
             [delegate loginComplete];
         } else {
@@ -102,7 +129,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
                                                [urlDict objectForKey:@"Base"], 
                                                [urlDict objectForKey:@"Users"]]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:registerUrl];
-    request.requestMethod = @"POST";
+    [request setRequestMethod:@"POST"];
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     
     // set the post data
@@ -114,7 +141,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         if([request responseStatusCode] == 201) {
             // set user data from response
             [self fromJson:[request responseString]];
-            NSLog(@"User created with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", self.userId, self.firstname, self.lastname, self.email, self.apiKey);
+            NSLog(@"User created with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", userId, firstname, lastname, email, apiKey);
             
             [delegate registrationComplete];
         } else {
@@ -140,7 +167,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         
         // create the dictionary to store
         NSArray *keys = [NSArray arrayWithObjects:@"userId", @"email", @"firstname", @"lastname", @"apiKey", nil];
-        NSArray *values = [NSArray arrayWithObjects:self.userId, self.email, self.firstname, self.lastname, self.apiKey, nil];
+        NSArray *values = [NSArray arrayWithObjects:userId, email, firstname, lastname, apiKey, nil];
         NSDictionary *userDict = [NSDictionary dictionaryWithObjects:values forKeys:keys];
         
         // save the dictionary to the local path
@@ -182,19 +209,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     
     
     // empty user data
-    [self.userId release];
-    [self.email release];
-    [self.password release];
-    [self.passwordConfirmation release];
-    [self.firstname release];
-    [self.lastname release];
-    [self.apiKey release];
+    [userId release];
+    [email release];
+    [password release];
+    [passwordConfirmation release];
+    [firstname release];
+    [lastname release];
+    [apiKey release];
 }
 
 - (BOOL)isAuthenticated
 {
     // if user is not authenticated
-    if (!self.userId) {
+    if (!userId) {
         // attempt to read user in from storage
         NSString *errorDesc = nil;
         NSString *plistPath = [self userStoragePath];
@@ -214,11 +241,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
             return NO;
         } else {
             NSLog(@"Loading user data from persisted plist.");
-            self.userId = [[userDict objectForKey:@"userId"] copy];
-            self.email = [[userDict objectForKey:@"email"] copy];
-            self.firstname = [[userDict objectForKey:@"firstname"] copy];
-            self.lastname = [[userDict objectForKey:@"lastname"] copy];
-            self.apiKey = [[userDict objectForKey:@"apiKey"] copy];
+            userId = [[userDict objectForKey:@"userId"] copy];
+            email = [[userDict objectForKey:@"email"] copy];
+            firstname = [[userDict objectForKey:@"firstname"] copy];
+            lastname = [[userDict objectForKey:@"lastname"] copy];
+            apiKey = [[userDict objectForKey:@"apiKey"] copy];
             return YES;
         }        
     } else {

@@ -16,8 +16,8 @@
 
 - (void)dealloc
 {
-    [self.objectName release];
-    [self.serializableProperties release];
+    [objectName release];
+    [serializableProperties release];
     [super dealloc];
 }
 
@@ -26,16 +26,17 @@
     // assemble a dictionary of this objects properties
     NSMutableArray *objectKeys = [[NSMutableArray alloc] init];
     NSMutableArray *objectValues = [[NSMutableArray alloc] init];
-    for (NSString *key in self.serializableProperties) {
+    for (NSString *key in serializableProperties) {
         // add our object key
-        if ([(NSString *)[self.serializableProperties objectForKey:key] isEqualToString:@""]) {
+        if ([(NSString *)[serializableProperties objectForKey:key] isEqualToString:@""]) {
             [objectKeys addObject:key];
         } else {
-            [objectKeys addObject:[self.serializableProperties objectForKey:key]];
+            [objectKeys addObject:[serializableProperties objectForKey:key]];
         }
         
         // add our object value
         id value = [self performSelector:NSSelectorFromString(key)];
+        NSLog(@"Adding value for key: %@", key);
         if (value) {
             [objectValues addObject:value];
         } else {
@@ -47,7 +48,7 @@
     NSDictionary *objectData = [NSDictionary dictionaryWithObjects:objectValues forKeys:objectKeys];
     
     // create the json object with the object name
-    NSDictionary *jsonData = [NSDictionary dictionaryWithObject:objectData forKey:self.objectName];
+    NSDictionary *jsonData = [NSDictionary dictionaryWithObject:objectData forKey:objectName];
     
     // using the json writer, create the json string
     SBJsonWriter *jsonWriter = [[SBJsonWriter alloc] init];
@@ -69,21 +70,21 @@
     NSDictionary *jsonData = [jsonParser objectWithString:jsonString];
     
     // get the object data
-    NSDictionary *objectData = [jsonData objectForKey:self.objectName];
+    NSDictionary *objectData = [jsonData objectForKey:objectName];
     
     // parse through each piece of data, setting locally
     for (NSString *objectKey in objectData) {        
         // if the json data key has a translation to our property
-        if ([[self.serializableProperties allValues] containsObject:objectKey]) {
+        if ([[serializableProperties allValues] containsObject:objectKey]) {
             // get the internal property name
-            NSString *internalPropertyName = [[self.serializableProperties allKeysForObject:objectKey] lastObject];
+            NSString *internalPropertyName = [[serializableProperties allKeysForObject:objectKey] lastObject];
             
             // set the value (if it responds to the getter)
             if ([self respondsToSelector:NSSelectorFromString(internalPropertyName)]) {
                 [self setValue:[objectData objectForKey:objectKey] forKey:internalPropertyName];
             }            
             // if the object key is the same as our local property
-        } else if([[self.serializableProperties allKeys] containsObject:objectKey]) {
+        } else if([[serializableProperties allKeys] containsObject:objectKey]) {
             // set the value
             if ([self respondsToSelector:NSSelectorFromString(objectKey)]) {
                 [self setValue:[objectData objectForKey:objectKey] forKey:objectKey];

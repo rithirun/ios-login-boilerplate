@@ -31,26 +31,26 @@
 + (SpinnerView *)loadSpinnerIntoView:(UIView *)superView
 {
     // create a new view with the same frame size as the super view
-    SpinnerView *spinnerView = [[[SpinnerView alloc] initWithFrame:superView.bounds] autorelease];
+    SpinnerView *spinnerView = [[[SpinnerView alloc] initWithFrame:[superView bounds]] autorelease];
     // abort if something goes wrong
     if (!spinnerView) {
         return nil;
     }
     
     // set background
-    spinnerView.backgroundColor = [UIColor blackColor];
-    spinnerView.alpha = 0.6;
+    [spinnerView setBackgroundColor:[UIColor blackColor]];
+    [spinnerView setAlpha:0.6];
     // add loading indicator
     UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] 
                                            initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] 
                                           autorelease];
     // set resizing mask so its never stretched
-    indicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |
-                                 UIViewAutoresizingFlexibleRightMargin |
-                                 UIViewAutoresizingFlexibleBottomMargin |
-                                 UIViewAutoresizingFlexibleLeftMargin;
+    [indicator setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin |
+                                    UIViewAutoresizingFlexibleRightMargin |
+                                    UIViewAutoresizingFlexibleBottomMargin |
+                                    UIViewAutoresizingFlexibleLeftMargin)];
     // center it in the spinner view
-    indicator.center = spinnerView.center;
+    [indicator setCenter:[spinnerView center]];
     
     // add it to the spinner view
     [spinnerView addSubview:indicator];
@@ -70,12 +70,12 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

@@ -32,38 +32,38 @@
 {
     self.waitingView = [SpinnerView loadSpinnerIntoView:self.view];
     AppUser *user = [AppUser sharedAppUser];
-    user.email = emailField.text;
-    user.password = passwordField.text;
-    user.passwordConfirmation = passwordConfirmationField.text;
-    user.firstname = firstnameField.text;
-    user.lastname = lastnameField.text;
+    [user setEmail:[emailField text]];
+    [user setPassword:[passwordField text]];
+    [user setPasswordConfirmation:[passwordConfirmationField text]];
+    [user setFirstname:[firstnameField text]];
+    [user setLastname:[lastnameField text]];
     [user registerWithDelegate:self];
 }
 
 - (void)registrationComplete
 {
     // remove loading view
-    [self.waitingView removeFromSuperview];
+    [waitingView removeFromSuperview];
     
     // set all fields back to default
-    self.emailField.text = @"";
-    self.passwordField.text = @"";
-    self.passwordConfirmationField.text = @"";
-    self.firstnameField.text = @"";
-    self.lastnameField.text = @"";
+    [emailField setText:@""];
+    [passwordField setText:@""];
+    [passwordConfirmationField setText:@""];
+    [firstnameField setText:@""];
+    [lastnameField setText:@""];
     
     // dismiss this view
     [self dismissModalViewControllerAnimated:YES];
     
     // call the delegates registrationComplete method
-    if (self.delegate) {
+    if (delegate) {
         [delegate registrationComplete];
     }
 }
 
 - (void)registrationFailed:(NSArray *)errors
 {
-    [self.waitingView removeFromSuperview];
+    [waitingView removeFromSuperview];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[RailsUtils stringFromErrorsArray:errors] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
@@ -71,21 +71,21 @@
 
 - (void)releaseOutlets
 {
-    self.emailField = nil;
-    self.passwordField = nil;
-    self.passwordConfirmationField = nil;
-    self.firstnameField = nil;
-    self.lastnameField = nil;
-    self.cancelButton = nil;
-    self.registerButton = nil;
-    self.waitingView = nil;
+    [emailField release];
+    [passwordField release];
+    [passwordConfirmationField release];
+    [firstnameField release];
+    [lastnameField release];
+    [cancelButton release];
+    [registerButton release];
+    [waitingView release];
 }
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSInteger nextTag = textField.tag + 1;
-    UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
+    NSInteger nextTag = [textField tag] + 1;
+    UIResponder *nextResponder = [[textField superview] viewWithTag:nextTag];
     
     if(nextResponder) {
         [nextResponder becomeFirstResponder];

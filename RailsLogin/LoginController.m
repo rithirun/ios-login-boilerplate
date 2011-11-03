@@ -18,11 +18,11 @@
 
 - (void)loginUser
 {
-    if(![self.usernameField.text isEqualToString:@""] && ![self.passwordField.text isEqualToString:@""]) {
-        self.waitingView = [SpinnerView loadSpinnerIntoView:self.view];
-        [AppUser authenticateUser:self.usernameField.text 
-                              withPassword:self.passwordField.text
-                            requestDelegate:self];
+    if(![[usernameField text] isEqualToString:@""] && ![[passwordField text] isEqualToString:@""]) {
+        waitingView = [SpinnerView loadSpinnerIntoView:self.view];
+        [AppUser authenticateUser:[usernameField text] 
+                     withPassword:[passwordField text]
+                  requestDelegate:self];
     }
 }
 
@@ -41,15 +41,15 @@
     }
     
     // remove the waiting view
-    [self.waitingView removeFromSuperview];
+    [waitingView removeFromSuperview];
     
     // remove loggin information, set back to default
-    self.usernameField.text = @"";
-    self.passwordField.text = @"";
-    [self.rememberSwitch setOn:YES];
+    [usernameField setText:@""];
+    [passwordField setText:@""];
+    [rememberSwitch setOn:YES];
     
     // load the home view controller
-    [(RootNavigationController *)self.navigationController pushHomeController];
+    [(RootNavigationController *)[self navigationController] pushHomeController];
 }
 
 -(void)loginFailed:(NSArray *)errors
@@ -80,7 +80,7 @@
 - (IBAction)registerButtonClicked:(id)sender
 {
     RegistrationController *registrationController = [[RegistrationController alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
-    registrationController.delegate = self;
+    [registrationController setDelegate:self];
     [self presentViewController:registrationController animated:YES completion:nil];
 }
 
@@ -99,12 +99,12 @@
 
 - (void)releaseOutlets
 {
-    self.usernameField = nil;
-    self.passwordField = nil;
-    self.registerButton = nil;
-    self.loginButton = nil;
-    self.rememberSwitch = nil;
-    self.waitingView = nil;
+    [usernameField release];
+    [passwordField release];
+    [registerButton release];
+    [loginButton release];
+    [rememberSwitch release];
+    [waitingView release];
 }
 
 - (void)viewDidLoad

@@ -32,11 +32,11 @@
 
 - (void)releaseOutlets
 {
-    userIdField = nil;
-    emailField = nil;
-    firstnameField = nil;
-    lastnameField = nil;
-    logoutButton = nil;
+    [userIdField release];
+    [emailField release];
+    [firstnameField release];
+    [lastnameField release];
+    [logoutButton release];
 }
 
 - (void)viewDidLoad
@@ -44,10 +44,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     AppUser *user = [AppUser sharedAppUser];
-    self.userIdField.text = [user.userId stringValue];
-    self.emailField.text = ([user.email isEqual:[NSNull null]]) ? @"" : user.email;
-    self.firstnameField.text = ([user.firstname isEqual:[NSNull null]]) ? @"" : user.firstname;
-    self.lastnameField.text = ([user.lastname isEqual:[NSNull null]]) ? @"" : user.lastname;
+    [userIdField setText:[[user userId] stringValue]];
+    [emailField setText:([[user email] isEqual:[NSNull null]]) ? @"" : [user email]];
+    [firstnameField setText:([[user firstname] isEqual:[NSNull null]]) ? @"" : [user firstname]];
+    [lastnameField setText:([[user lastname] isEqual:[NSNull null]]) ? @"" : [user lastname]];
 }
 
 - (void)viewDidUnload
