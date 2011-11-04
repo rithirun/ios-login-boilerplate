@@ -31,11 +31,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 
 - (id)init
 {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         // set the object name (when serialized)
-        objectName = @"user";
+        [self setObjectName:@"user"];
         // set the serializable properties and their serialized counterparts
-        serializableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+        [self setSerializableProperties:[NSDictionary dictionaryWithObjectsAndKeys:
                                   @"id", @"userId",
                                   @"", @"email",
                                   @"", @"password",
@@ -43,13 +43,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
                                   @"", @"firstname",
                                   @"", @"lastname",
                                   @"api_key", @"apiKey",
-                                  nil];
+                                  nil]];
     }
     return self;
 }
 
 - (void)setFirstname:(NSString *)aFirstname
 {
+    [aFirstname retain];
     if ([aFirstname isEqual:[NSNull null]]) {
         firstname = @"";
     } else {
@@ -59,6 +60,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 
 - (void)setLastname:(NSString *)aLastname
 {
+    [aLastname retain];
     if ([aLastname isEqual:[NSNull null]]) {
         lastname = @"";
     } else {
@@ -68,6 +70,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
 
 - (void)setApiKey:(NSString *)anApiKey
 {
+    [anApiKey retain];
     if ([anApiKey isEqual:[NSNull null]]) {
         apiKey = @"";
     } else {
@@ -96,7 +99,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     // add the post body
     NSString *postBody = [user toJson];
     [request appendPostData:[postBody dataUsingEncoding:NSUTF8StringEncoding]];    
-    
+   
     // set the completion callback
     [request setCompletionBlock:^{        
         // response code 201 = Created
@@ -241,11 +244,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
             return NO;
         } else {
             NSLog(@"Loading user data from persisted plist.");
-            userId = [[userDict objectForKey:@"userId"] copy];
-            email = [[userDict objectForKey:@"email"] copy];
-            firstname = [[userDict objectForKey:@"firstname"] copy];
-            lastname = [[userDict objectForKey:@"lastname"] copy];
-            apiKey = [[userDict objectForKey:@"apiKey"] copy];
+            [self setUserId:[[userDict objectForKey:@"userId"] copy]];
+            [self setEmail:[[userDict objectForKey:@"email"] copy]];
+            [self setFirstname:[[userDict objectForKey:@"firstname"] copy]];
+            [self setLastname:[[userDict objectForKey:@"lastname"] copy]];
+            [self setApiKey:[[userDict objectForKey:@"apiKey"] copy]];
             return YES;
         }        
     } else {
