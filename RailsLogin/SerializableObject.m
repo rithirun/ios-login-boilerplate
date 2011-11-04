@@ -36,7 +36,6 @@
         
         // add our object value
         id value = [self performSelector:NSSelectorFromString(key)];
-        NSLog(@"Adding value for key: %@", key);
         if (value) {
             [objectValues addObject:value];
         } else {
@@ -63,12 +62,8 @@
     return jsonString;
 }
 
-- (void)fromJson:(NSString *)jsonString
+- (void)fromJson:(NSDictionary *)jsonData
 {
-    // parse the json string into a dictionary
-    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-    NSDictionary *jsonData = [jsonParser objectWithString:jsonString];
-    
     // get the object data
     NSDictionary *objectData = [jsonData objectForKey:objectName];
     
@@ -91,9 +86,6 @@
             }
         }
     }
-    
-    // cleanup memory
-    [jsonParser release];
 }
 
 @end

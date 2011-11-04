@@ -32,10 +32,10 @@
 - (NSString *)toJson;
 
 /**
- Uses a json string to set properties on the local object
+ Uses a json dictionary to set properties on the local object
  
- @param the json string
+ @param the json dictionary
  */
-- (void)fromJson:(NSString *)jsonString;
+- (void)fromJson:(NSDictionary *)jsonData;
 
 @end

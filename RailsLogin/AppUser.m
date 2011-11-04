@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "RailsUtils.h"
 #import "SynthesizeSingleton.h"
+#import "SBJson.h"
 
 @implementation AppUser
 
@@ -36,14 +37,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
         [self setObjectName:@"user"];
         // set the serializable properties and their serialized counterparts
         [self setSerializableProperties:[NSDictionary dictionaryWithObjectsAndKeys:
-                                  @"id", @"userId",
-                                  @"", @"email",
-                                  @"", @"password",
-                                  @"password_confirmation", @"passwordConfirmation",
-                                  @"", @"firstname",
-                                  @"", @"lastname",
-                                  @"api_key", @"apiKey",
-                                  nil]];
+                                         @"id", @"userId",
+                                         @"", @"email",
+                                         @"", @"password",
+                                         @"password_confirmation", @"passwordConfirmation",
+                                         @"", @"firstname",
+                                         @"", @"lastname",
+                                         @"api_key", @"apiKey",
+                                         nil]];
     }
     return self;
 }
@@ -99,13 +100,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     // add the post body
     NSString *postBody = [user toJson];
     [request appendPostData:[postBody dataUsingEncoding:NSUTF8StringEncoding]];    
-   
+    
     // set the completion callback
     [request setCompletionBlock:^{        
         // response code 201 = Created
         if([request responseStatusCode] == 201) {
             // set user data from response
-            [user fromJson:[request responseString]];
+            SBJsonParser *parser = [[SBJsonParser alloc] init];
+            NSDictionary *jsonData = [parser objectWithString:[request responseString]];
+            [user fromJson:jsonData];
+            [parser release];
             
             NSLog(@"User logged in with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", [user userId], [user firstname], [user lastname], [user email], [user apiKey]);
             
@@ -143,7 +147,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AppUser)
     [request setCompletionBlock:^{        
         if([request responseStatusCode] == 201) {
             // set user data from response
-            [self fromJson:[request responseString]];
+            SBJsonParser *parser = [[SBJsonParser alloc] init];
+            NSDictionary *jsonData = [parser objectWithString:[request responseString]];
+            [self fromJson:jsonData];
+            [parser release];
             NSLog(@"User created with id=%@, firstname=%@, lastname=%@, email=%@, apiKey=%@", userId, firstname, lastname, email, apiKey);
             
             [delegate registrationComplete];
