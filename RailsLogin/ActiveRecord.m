@@ -101,7 +101,7 @@
     // setup our failed block
     [request setFailedBlock:^{
         if ([delegate respondsToSelector:@selector(findAllFailed:)]) {
-            [delegate findFailed:[NSArray arrayWithObject:[[request error] localizedDescription]]];
+            [delegate findAllFailed:[NSArray arrayWithObject:[[request error] localizedDescription]]];
         }
     }];
     
